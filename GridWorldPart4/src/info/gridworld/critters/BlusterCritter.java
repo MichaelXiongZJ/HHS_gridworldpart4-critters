@@ -1,5 +1,7 @@
 package info.gridworld.critters;
 
-public class BlusterCritter {
+import info.gridworld.actor.Critter;
+
+public class BlusterCritter extends Critter{
 
 }
