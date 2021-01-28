@@ -8,11 +8,14 @@ public class ChameleonKid extends ChameleonCritter{
 
 	  public ArrayList<Actor> getActors(){
 		  
+	//	  if (getDirection() == NORTH)
 		  
 		  
+		  System.out.println(getDirection());
+	        
 		  
 		  
-	        return getGrid().getNeighbors(getLocation());
+		  return getGrid().getNeighbors(getLocation());
 	        
 	        
 	        
