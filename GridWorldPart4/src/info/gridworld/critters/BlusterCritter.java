@@ -10,11 +10,14 @@ import info.gridworld.grid.Location;
 public class BlusterCritter extends Critter{
 	
 	private int c = 8;
-	private int x = getLocation().getRow();
-	private int y = getLocation().getCol();
+//	private int x = getLocation().getRow();
+//	private int y = getLocation().getCol();
 	private static final double COLOR_FACTOR = 0.5;
 
 	public ArrayList<Actor> getActors() {
+	 	 int x = getLocation().getRow();
+		 int y = getLocation().getCol();
+		
 		 ArrayList<Actor> actors =  getGrid().getNeighbors(getLocation());
 		 
 		 Location one = new Location(x-1, y-1);
@@ -22,7 +25,7 @@ public class BlusterCritter extends Critter{
 		 Location three = new Location(x-1, y+1);
 		 Location four = new Location(x+1, y+1);
 		 
-		 ArrayList <Location> subCritters = null;
+		 ArrayList <Location> subCritters = new ArrayList<Location>();
 		 subCritters.add(one);
 		 subCritters.add(two);
 		 subCritters.add(three);
@@ -55,30 +58,41 @@ public class BlusterCritter extends Critter{
 
 	public void processActors(ArrayList<Actor> actors) {
 		
-		 int n = actors.size();
+			int n = actors.size();
+        	Color c = getColor();
+        	int red = (int) (c.getRed());
+        	int green = (int) (c.getGreen());
+        	int blue = (int) (c.getBlue());
 	        if (n<8) {
-	        	Color c = getColor();
-	        	int red = (int) (c.getRed()*(1+COLOR_FACTOR));
-	        	int green = (int) (c.getGreen()*(1+COLOR_FACTOR));
-	        	int blue = (int) (c.getBlue()*(1+COLOR_FACTOR)); 
-	        	
-	        	setColor(new Color(red, green, blue));
-	        	
+	        	if(red<255) {
+		        	red *= (1+COLOR_FACTOR);
+	        	}
+	        	if(green<255) {
+		        	green *= (1+COLOR_FACTOR);
+	        	}
+	        	if(blue<255) {
+		        	blue *= (1+COLOR_FACTOR); 
+	        	}
+	        	setColor(new Color(red, green, blue));        	
 	            return;
 	        }else if(n>8) {
-	        	Color c = getColor();
-	        	int red = (int) (c.getRed()*(1-COLOR_FACTOR));
-	        	int green = (int) (c.getGreen()*(1-COLOR_FACTOR));
-	        	int blue = (int) (c.getBlue()*(1-COLOR_FACTOR)); 
-	        	
-	        	setColor(new Color(red, green, blue));
-	        	
+	        	if(red>1) {
+		        	red *= (1-COLOR_FACTOR);
+	        	}
+	        	if(green>1) {
+		        	green *= (1-COLOR_FACTOR);
+	        	}
+	        	if(blue>1) {
+		        	blue *= (1-COLOR_FACTOR); 
+	        	}
+	        	setColor(new Color(red, green, blue));        	
 	            return;
 	        }
-	        /*
+
+	        
 	        int r = (int) (Math.random() * n);
 
 	        Actor other = actors.get(r);
-	        setColor(other.getColor());*/
+	        setColor(other.getColor());
 	}
 }
