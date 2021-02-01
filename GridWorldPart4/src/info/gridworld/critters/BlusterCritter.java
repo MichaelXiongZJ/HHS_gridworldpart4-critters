@@ -15,9 +15,9 @@ public class BlusterCritter extends Critter{
 	private static final double COLOR_FACTOR = 0.5;
 
 	public ArrayList<Actor> getActors() {
-	 	 int x = getLocation().getRow();
-		 int y = getLocation().getCol();
-		
+	 	 int x = getLocation().getCol();
+		 int y = getLocation().getRow();
+		 System.out.println("Location: x = "+x+", y = "+y);
 		 ArrayList<Actor> actors =  getGrid().getNeighbors(getLocation());
 		 
 		 Location one = new Location(x-1, y-1);
@@ -30,10 +30,10 @@ public class BlusterCritter extends Critter{
 		 subCritters.add(two);
 		 subCritters.add(three);
 		 subCritters.add(four);
-		 
+		 System.out.println("subCritters list: " + subCritters);
 		 for(int a=0; a<4; a++) {
 			 if(getGrid().isValid(subCritters.get(a).getAdjacentLocation(Location.WEST+a*90)) && getGrid().get(subCritters.get(a).getAdjacentLocation(Location.WEST+a*90)) != null) {
-				 actors.add(getGrid().get(getLocation().getAdjacentLocation(Location.WEST+a*90)));
+				 actors.add(getGrid().get(subCritters.get(a).getAdjacentLocation(Location.WEST+a*90)));
 		     }if(getGrid().isValid(subCritters.get(a).getAdjacentLocation(Location.NORTHWEST+a*90)) && getGrid().get(subCritters.get(a).getAdjacentLocation(Location.NORTHWEST+a*90)) != null) {
 		    	 actors.add(getGrid().get(subCritters.get(a).getAdjacentLocation(Location.NORTHWEST+a*90)));
 		     }if(getGrid().isValid(subCritters.get(a).getAdjacentLocation(Location.NORTH+a*90)) && getGrid().get(subCritters.get(a).getAdjacentLocation(Location.NORTH+a*90)) != null) {
@@ -42,7 +42,7 @@ public class BlusterCritter extends Critter{
 		    	 actors.add(getGrid().get(subCritters.get(a).getAdjacentLocation(Location.NORTHEAST+a*90)));
 		     }
 		 }
-
+		 System.out.println("Actor List: "+actors);
 		 return actors;
 	}
 	/*
@@ -59,6 +59,7 @@ public class BlusterCritter extends Critter{
 	public void processActors(ArrayList<Actor> actors) {
 		
 			int n = actors.size();
+			System.out.println("n = "+n);
         	Color c = getColor();
         	int red = (int) (c.getRed());
         	int green = (int) (c.getGreen());
@@ -88,7 +89,6 @@ public class BlusterCritter extends Critter{
 	        	setColor(new Color(red, green, blue));        	
 	            return;
 	        }
-
 	        
 	        int r = (int) (Math.random() * n);
 
