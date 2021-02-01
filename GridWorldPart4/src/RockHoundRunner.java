@@ -6,6 +6,7 @@ import info.gridworld.critters.RockHound;
 import info.gridworld.grid.Location;
 
 public class RockHoundRunner {
+	
 	 public static void main(String[] args)
 	    {
 	        ActorWorld world = new ActorWorld();
