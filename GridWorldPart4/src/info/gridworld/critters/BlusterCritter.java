@@ -22,8 +22,8 @@ public class BlusterCritter extends Critter{
 		 
 		 Location one = new Location(x-1, y-1);
 		 Location two = new Location(x+1, y-1);
-		 Location three = new Location(x-1, y+1);
-		 Location four = new Location(x+1, y+1);
+		 Location three = new Location(x+1, y+1);
+		 Location four = new Location(x-1, y+1);
 		 
 		 ArrayList <Location> subCritters = new ArrayList<Location>();
 		 subCritters.add(one);
