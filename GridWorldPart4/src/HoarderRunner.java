@@ -20,8 +20,8 @@
 import info.gridworld.actor.ActorWorld;
 import info.gridworld.actor.Bug;
 import info.gridworld.actor.Rock;
-import info.gridworld.critters.HoarderCritter;
 import info.gridworld.grid.Location;
+import info.gridworld.critters.HoarderCritter;
 
 /**
  * This class runs a world that contains a bug and a rock, added at random
