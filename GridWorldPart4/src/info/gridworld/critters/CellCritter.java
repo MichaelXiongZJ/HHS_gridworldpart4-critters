@@ -32,7 +32,7 @@ public class CellCritter extends Critter{
         }
         if(count >= 5 || count == 0) {
         	removeSelfFromGrid();
-        }else{
+        }else if(count<=3){
         	replicate();
         }
     }
