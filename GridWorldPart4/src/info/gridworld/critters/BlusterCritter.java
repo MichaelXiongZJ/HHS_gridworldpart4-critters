@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import info.gridworld.actor.Actor;
 import info.gridworld.actor.Critter;
+import info.gridworld.grid.Grid;
 import info.gridworld.grid.Location;
 
 public class BlusterCritter extends Critter{
@@ -12,8 +13,9 @@ public class BlusterCritter extends Critter{
 	private int c = 8;
 //	private int x = getLocation().getRow();
 //	private int y = getLocation().getCol();
-	private static final double COLOR_FACTOR = 0.3;
+	private static final double COLOR_FACTOR = 0.4;
 
+	
 	public ArrayList<Actor> getActors() {
 	 	 int x = getLocation().getCol();
 		 int y = getLocation().getRow();
@@ -42,6 +44,44 @@ public class BlusterCritter extends Critter{
 		 }
 		 return actors;
 	}
+
+	/*
+	//Warm-up example #1
+	//Bugs: Doesn't check validity, return null in the ArrayList, add itself to the list
+	public ArrayList<Actor> getActors(){
+		ArrayList<Actor> actors = new ArrayList<Actor>();
+		
+		Grid<Actor> gr = getGrid();
+		Location l = getLocation();
+		
+		for (int i = -2; i <= 2; i++) {
+			for (int j = -2; j <= 2; j++) {
+				Location check = new Location(l.getRow()+i, l.getCol()+j);
+				Actor a = gr.get(check);
+				actors.add(a);
+			}
+		}
+		return actors;
+	}
+*/
+	/*
+	//Warm-up example #2
+	//Bugs: return null in the ArrayList, add itself to the list, duplicate actors in the list
+	public ArrayList<Actor> getActors(){
+		ArrayList<Actor> actors = new ArrayList<Actor>();
+		
+		Grid<Actor> gr = getGrid();
+		Location l = getLocation();
+		
+		for (Location b : gr.getValidAdjacentLocations(l)) {
+			for (Location c : gr.getValidAdjacentLocations(b)) {
+				Actor a = gr.get(c);
+				actors.add(a);
+			}
+		}
+		return actors;
+	}
+*/
 
 	public void processActors(ArrayList<Actor> actors) {
 		
@@ -82,4 +122,5 @@ public class BlusterCritter extends Critter{
 	            return;
 	        }
 	}
+	
 }
