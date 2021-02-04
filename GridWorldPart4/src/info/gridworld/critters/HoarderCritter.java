@@ -46,6 +46,7 @@ public class HoarderCritter extends Critter{
 	public ArrayList<Location> getMoveLocations() {
 		ArrayList<Location> loc = new ArrayList<Location>();
 		Location tempLoc;
+		int r = (int) (Math.random() * 10);
 			if(moveAway == false && pray != null) {
 				if(home.getRow()>getLocation().getRow()) {
 					tempLoc = new Location(getLocation().getRow()+1, getLocation().getCol());
@@ -70,15 +71,18 @@ public class HoarderCritter extends Critter{
 					}
 				}
 			}else if(moveAway == true && pray == null){
-				if(home.getRow()<=getLocation().getRow()) {
-					tempLoc = new Location(getLocation().getRow()+1, getLocation().getCol());
-					if(getGrid().get(tempLoc)==null && getGrid().isValid(tempLoc))
-						loc.add(0, tempLoc);
-				}else if(home.getRow()>getLocation().getRow()) {
-					tempLoc = new Location(getLocation().getRow()-1, getLocation().getCol());
-					if(getGrid().get(tempLoc)==null && getGrid().isValid(tempLoc))
-						loc.add(0, tempLoc);
-				}else {
+				if(r%2 == 0) {
+					if(home.getRow()<=getLocation().getRow()) {
+						tempLoc = new Location(getLocation().getRow()+1, getLocation().getCol());
+						if(getGrid().get(tempLoc)==null && getGrid().isValid(tempLoc))
+							loc.add(0, tempLoc);
+					}else if(home.getRow()>getLocation().getRow()) {
+						tempLoc = new Location(getLocation().getRow()-1, getLocation().getCol());
+						if(getGrid().get(tempLoc)==null && getGrid().isValid(tempLoc))
+							loc.add(0, tempLoc);
+					}
+				}
+				if(r%2 != 0) {
 					if(home.getCol()<=getLocation().getCol()) {
 						tempLoc = new Location(getLocation().getRow(), getLocation().getCol()+1);
 						if(getGrid().get(tempLoc)==null && getGrid().isValid(tempLoc))
@@ -97,13 +101,19 @@ public class HoarderCritter extends Critter{
     
 	public void makeMove(Location loc)
     {
+		Location a = getLocation();
 		if(moveAway == true && pray != null) {
             moveTo(loc);
     		Actor newActor = pray;
     		newActor.putSelfInGrid(getGrid(), home);
     		pray = null;
-    	} else {
-    		moveTo(loc);
+    	} else if(pray != null && a == loc){
+    		moveTo(selectMoveLocation(super.getMoveLocations()));
+    		Actor newActor = pray;
+    		newActor.putSelfInGrid(getGrid(), a);
+    		pray = null;
+        }else {
+        	moveTo(loc);
         }
         if(moveAway == true) {
         	count++;
