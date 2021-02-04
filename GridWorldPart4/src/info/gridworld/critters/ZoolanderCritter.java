@@ -1,19 +1,12 @@
 package info.gridworld.critters;
 
 import java.util.ArrayList;
-
 import info.gridworld.actor.Actor;
 import info.gridworld.actor.Critter;
-import info.gridworld.actor.Rock;
 import info.gridworld.actor.Flower;
-import info.gridworld.grid.Grid;
 import info.gridworld.grid.Location;
 
 public class ZoolanderCritter extends Critter {
-	
-	
-	
-	
 	
 	public ArrayList<Location> getMoveLocations(){
         ArrayList<Location> next = new ArrayList<Location>(); 
